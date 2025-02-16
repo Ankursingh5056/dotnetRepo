@@ -1,0 +1,77 @@
+
+question 1  Create a "StockPortfolio" class that tracks multiple stocks. Implement methods to add stocks, remove stocks, and calculate the total portfolio value dynamically.
+
+
+ using System;
+using System.Collections.Generic;
+
+class Stock
+{
+    public string Name;
+    public int Quantity;
+    public double Price;
+
+    public Stock(string name, int quantity, double price)
+    {
+        Name = name;
+        Quantity = quantity;
+        Price = price;
+    }
+
+    public double GetValue()
+    {
+        return Quantity * Price;
+    }
+}
+
+class StockPortfolio
+{
+    List<Stock> stocks = new List<Stock>();
+
+    public void AddStock(string name, int quantity, double price)
+    {
+        stocks.Add(new Stock(name, quantity, price));
+    }
+
+    public void RemoveStock(string name)
+    {
+        stocks.RemoveAll(s => s.Name == name);
+    }
+
+    public double GetTotalValue()
+    {
+        double total = 0;
+        foreach (Stock s in stocks)
+        {
+            total += s.GetValue();
+        }
+        return total;
+    }
+
+    public void ShowPortfolio()
+    {
+        foreach (Stock s in stocks)
+        {
+            Console.WriteLine($"{s.Name}: {s.Quantity} shares @ ${s.Price}");
+        }
+        Console.WriteLine($"Total Value: ${GetTotalValue()}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        StockPortfolio portfolio = new StockPortfolio();
+        
+        portfolio.AddStock("Apple", 10, 150);
+        portfolio.AddStock("Microsoft", 5, 300);
+        portfolio.ShowPortfolio();
+
+        portfolio.RemoveStock("Apple");
+        portfolio.ShowPortfolio();
+    }
+}
+
+
+

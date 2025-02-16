@@ -1,0 +1,208 @@
+
+
+question 1  Implement a method to find the subarray with the maximum sum (Kadane’s Algorithm) in a given integer array.
+ ans =>
+ 
+  using System;
+
+class Program
+{
+    static int MaxSubarraySum(int[] arr)
+    {
+        int maxSum = arr[0];
+        int currentSum = arr[0];
+
+        for (int i = 1; i < arr.Length; i++)
+        {
+            currentSum = Math.Max(arr[i], currentSum + arr[i]);
+            maxSum = Math.Max(maxSum, currentSum);
+        }
+
+        return maxSum;
+    }
+
+    static void Main()
+    {
+        int[] arr = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
+        Console.WriteLine("Maximum Subarray Sum: " + MaxSubarraySum(arr)); 
+        
+    }
+}
+
+
+question 2 Write a program to find the intersection and union of two unsorted arrays without using built-in functions.
+
+ans   
+
+
+ using System;
+
+class Program
+{
+    
+    static void FindUnion(int[] arr1, int[] arr2)
+    {
+        Console.Write("Union: ");
+        for (int i = 0; i < arr1.Length; i++)
+        {
+            Console.Write(arr1[i] + " ");
+        }
+
+        for (int i = 0; i < arr2.Length; i++)
+        {
+            bool found = false;
+            for (int j = 0; j < arr1.Length; j++)
+            {
+                if (arr2[i] == arr1[j])
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                Console.Write(arr2[i] + " ");
+            }
+        }
+        Console.WriteLine();
+    }
+
+   
+    static void FindIntersection(int[] arr1, int[] arr2)
+    {
+        Console.Write("Intersection: ");
+        for (int i = 0; i < arr1.Length; i++)
+        {
+            for (int j = 0; j < arr2.Length; j++)
+            {
+                if (arr1[i] == arr2[j])
+                {
+                    Console.Write(arr1[i] + " ");
+                    break;  
+                }
+            }
+        }
+        Console.WriteLine();
+    }
+
+    static void Main()
+    {
+        int[] arr1 = { 1, 2, 3, 4, 5 };
+        int[] arr2 = { 3, 4, 5, 6, 7 };
+
+        FindUnion(arr1, arr2);
+        FindIntersection(arr1, arr2);
+    }
+}
+
+
+
+question3 Implement a sparse matrix multiplication algorithm using a 2D array in C#.
+
+using System;
+
+class SparseMatrixMultiplication
+{
+    static void Main()
+    {
+        int[,] A = {
+            { 0, 0, 3 },
+            { 4, 0, 0 },
+            { 0, 2, 0 }
+        };
+
+        int[,] B = {
+            { 0, 5, 0 },
+            { 0, 0, 6 },
+            { 7, 0, 0 }
+        };
+
+        int row1 = A.GetLength(0), col1 = A.GetLength(1);
+        int row2 = B.GetLength(0), col2 = B.GetLength(1);
+
+        if (col1 != row2)
+        {
+            Console.WriteLine("Matrix multiplication not possible.");
+            return;
+        }
+
+        int[,] result = new int[row1, col2];
+
+       
+        for (int i = 0; i < row1; i++)
+        {
+            for (int j = 0; j < col2; j++)
+            {
+                result[i, j] = 0; 
+                for (int k = 0; k < col1; k++)
+                {
+                    if (A[i, k] != 0 && B[k, j] != 0)
+                    {
+                        result[i, j] += A[i, k] * B[k, j];
+                    }
+                }
+            }
+        }
+
+      
+        Console.WriteLine("Result:");
+        for (int i = 0; i < row1; i++)
+        {
+            for (int j = 0; j < col2; j++)
+            {
+                Console.Write(result[i, j] + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+
+
+
+question 4  Write a method to find the first missing positive integer in an unsorted array (without sorting).
+
+using System;
+
+class FirstMissingPositive
+{
+    static int FindMissingPositive(int[] nums)
+    {
+        int n = nums.Length;
+
+       
+        for (int i = 0; i < n; i++)
+        {
+            while (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i])
+            {
+                // Swap nums[i] with nums[nums[i] - 1]
+                int temp = nums[i];
+                nums[i] = nums[temp - 1];
+                nums[temp - 1] = temp;
+            }
+        }
+
+        // Step 2: Find the first missing number
+        for (int i = 0; i < n; i++)
+        {
+            if (nums[i] != i + 1)
+            {
+                return i + 1;
+            }
+        }
+
+        // Step 3: If all are in place, return n + 1
+        return n + 1;
+    }
+
+    static void Main()
+    {
+        int[] nums = { 3, 4, -1, 1 };
+        Console.WriteLine("First Missing Positive: " + FindMissingPositive(nums)); 
+    }
+}
+
+
+
+
+
+  

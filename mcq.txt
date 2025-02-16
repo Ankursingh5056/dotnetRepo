@@ -1,0 +1,38 @@
+         
+
+ques   Which of the following is the correct syntax to define a class in C#?
+Ans = class MyClass { }
+
+ques2 What is the default access modifier for members of a class in C#?  
+ ans  private
+
+ques3  Which of the following is true about constructors in C#?
+ ans   A constructor can have the same name as the class.
+
+ques 4  What is the result of the following code  ?
+  ans  5
+
+ques 5 What is the purpose of the this keyword in C#?
+ ans  It is used to access the instance members of the current object.
+
+ques 6 Which of the following is an example of a property in  C# class?
+ ans public int x { get; set; }
+
+ques 7 What will happen if you try to access a private member of a class from outside that class in C#?
+ans  Compilation error
+
+ques 9 Which of the following statements are correct about the this reference?
+ans 
+     Static functions of a class never receive the this reference.
+     Instance member functions of a class always receive a this reference.
+     While calling an instance member function we are not required to pass the this reference explicitly.
+
+ques 10  Which of the following is the correct way to create an object of the class Sample
+ans Sample s = new Sample(); ,  Sample s; s = new Sample();
+
+
+
+
+    
+
+ 
